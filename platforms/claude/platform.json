@@ -1,0 +1,17 @@
+{
+  "layout": "aggregate",
+  "archive": {"prefix": "h3c-helper/", "extension": ".zip"},
+  "description_limit": 200,
+  "frontmatter": [
+    "name: h3c-helper",
+    "description: \"Use for any H3C/Comware networking question: explain concepts (VLAN, IRF), review configs, troubleshoot, design networks, compare products/optics, draft TAC cases. Never connects to devices.\"",
+    "dependencies: python>=3.10, jsonschema>=4",
+    "metadata:",
+    "  version: {version}"
+  ],
+  "notes": [
+    "Official format: ZIP root is the skill folder; description <= 200 characters (support.claude.com/en/articles/12512198).",
+    "Install: claude.ai or Claude Desktop Customize > Skills > Add > Upload skill; update or roll back with the skill menu Replace.",
+    "2026-09-29: the dependencies declaration did not provision jsonschema in the claude.ai sandbox; structured checks exit 3 there."
+  ]
+}

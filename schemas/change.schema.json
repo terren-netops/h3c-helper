@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "const": "change"
+    },
+    "schema_version": {
+      "const": "1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "READY",
+        "AUTHORIZED",
+        "APPLYING",
+        "VERIFYING",
+        "ACCEPTED",
+        "ROLLED_BACK",
+        "ROLLBACK_FAILED",
+        "UNKNOWN"
+      ]
+    },
+    "plan": {
+      "type": "object",
+      "properties": {
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "model": {
+                "type": "string",
+                "minLength": 1
+              },
+              "release": {
+                "type": "string",
+                "minLength": 1
+              },
+              "snapshot_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "diff": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "model",
+              "release",
+              "snapshot_sha256",
+              "diff"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "window": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "pending",
+                  "pass",
+                  "fail"
+                ]
+              },
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "evidence"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "verification": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "stop_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "recovery": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "access": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence": {
+              "type": "string",
+              "minLength": 1
+            },
+            "verified": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "method",
+            "access",
+            "evidence",
+            "verified"
+          ],
+          "additionalProperties": false
+        },
+        "persistence": {
+          "enum": [
+            "do_not_save",
+            "save_after_acceptance",
+            "separate_approval"
+          ]
+        }
+      },
+      "required": [
+        "targets",
+        "impact",
+        "window",
+        "preconditions",
+        "verification",
+        "stop_conditions",
+        "recovery",
+        "persistence"
+      ],
+      "additionalProperties": false
+    },
+    "authorization": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "plan_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "running": {
+            "enum": [
+              "changed",
+              "unchanged",
+              "unknown"
+            ]
+          },
+          "startup": {
+            "enum": [
+              "saved",
+              "unchanged",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "target",
+          "result",
+          "evidence",
+          "running",
+          "startup"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "save_authorization": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "plan_sha256",
+        "targets"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "kind",
+    "schema_version",
+    "id",
+    "status",
+    "plan"
+  ],
+  "additionalProperties": false
+}

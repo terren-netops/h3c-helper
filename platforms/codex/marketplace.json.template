@@ -1,0 +1,20 @@
+{
+  "name": "h3c-helper-local",
+  "interface": {
+    "displayName": "H3c Helper"
+  },
+  "plugins": [
+    {
+      "name": "h3c-helper",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

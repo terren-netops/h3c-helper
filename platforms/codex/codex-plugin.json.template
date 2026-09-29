@@ -1,0 +1,31 @@
+{
+  "name": "h3c-helper",
+  "version": "{{VERSION}}",
+  "description": "H3C configuration, troubleshooting, network design, product selection and service-support workflows.",
+  "author": {
+    "name": "Terren"
+  },
+  "keywords": [
+    "h3c",
+    "networking",
+    "comware",
+    "support"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "H3c Helper",
+    "shortDescription": "H3C configuration, troubleshooting, design and support",
+    "longDescription": "Five workflows for H3C configuration review, troubleshooting, network design, product selection and service support. Includes local CLI profiling, engineering checks and handoff drafts. English by default; local tools do not connect to devices or send messages.",
+    "developerName": "Terren",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Review this H3C configuration and recommend the smallest justified changes, with sources and verification steps.",
+      "Diagnose this H3C network issue using the symptoms and logs. Separate observations from hypotheses.",
+      "Compare these H3C products using full model numbers, compatibility evidence and cost assumptions."
+    ],
+    "brandColor": "#C41230"
+  }
+}

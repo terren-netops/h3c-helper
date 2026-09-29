@@ -1,0 +1,3 @@
+interface:
+  display_name: "H3C Network Design"
+  short_description: "Plan H3C topology, ports, capacity and redundancy"

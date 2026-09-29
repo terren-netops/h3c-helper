@@ -1,0 +1,13 @@
+{
+  "layout": "aggregate",
+  "archive": {"prefix": "", "extension": ".zip"},
+  "frontmatter": [
+    "name: h3c-helper",
+    "description: \"Review H3C configurations, troubleshoot faults, design networks, compare products and prepare service-support drafts. Use for H3C engineering tasks and supplied device outputs; execution needs an authorized external runner.\"",
+    "description_zh: \"用于 H3C 配置审查、故障排查、网络设计、产品选型和服务支持。\"",
+    "description_en: \"Review H3C configurations, troubleshoot faults, design networks, compare products and prepare service-support drafts. Use for H3C engineering tasks and supplied device outputs; execution needs an authorized external runner.\"",
+    "version: {version}",
+    "author: \"Terren\""
+  ],
+  "notes": ["WorkBuddy: Skills -> Add skill -> Upload skill, select the ZIP."]
+}

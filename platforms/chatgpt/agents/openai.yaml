@@ -1,0 +1,4 @@
+interface:
+  display_name: "H3c Helper"
+  short_description: "H3C configuration, troubleshooting, design and support"
+  default_prompt: "Use $h3c-helper to review my H3C engineering task with sources and verification steps."

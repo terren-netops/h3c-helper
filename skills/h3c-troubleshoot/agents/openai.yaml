@@ -1,0 +1,3 @@
+interface:
+  display_name: "H3C Troubleshooting"
+  short_description: "Diagnose H3C faults using logs and testable hypotheses"

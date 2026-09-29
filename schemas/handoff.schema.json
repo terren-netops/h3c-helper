@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "const": "handoff"
+    },
+    "schema_version": {
+      "const": "1"
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "OPEN",
+        "UNKNOWN",
+        "RESOLVED"
+      ]
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "observation",
+              "hypothesis",
+              "action",
+              "next_step",
+              "limitation"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "visibility": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineer",
+                "tac",
+                "customer"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 3
+          },
+          "redaction_reviewed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "category",
+          "text",
+          "source_ref",
+          "visibility",
+          "redaction_reviewed"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 1000
+    }
+  },
+  "required": [
+    "kind",
+    "schema_version",
+    "case_id",
+    "status",
+    "facts"
+  ],
+  "additionalProperties": false
+}

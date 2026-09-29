@@ -1,0 +1,12 @@
+{
+  "layout": "aggregate",
+  "archive": {"prefix": "", "extension": ".skill"},
+  "frontmatter": [
+    "name: h3c-helper",
+    "description: \"Review H3C configurations, troubleshoot faults, design networks, compare products and prepare service-support drafts. Use for H3C engineering tasks and supplied device outputs; execution needs an authorized external runner.\"",
+    "metadata:",
+    "  version: {version}"
+  ],
+  "platform_files": {"agents/openai.yaml": "agents/openai.yaml"},
+  "notes": ["chatgpt.com/skills upload of the .skill archive (TF-18 route, rc.5); not retested for this layout."]
+}

@@ -1,0 +1,10 @@
+{
+  "layout": "plugin",
+  "archive": {"prefix": "h3c-helper/", "extension": ".zip"},
+  "platform_files": {
+    "plugin.json": "plugin.json.template",
+    ".codex-plugin/plugin.json": "codex-plugin.json.template",
+    ".agents/plugins/marketplace.json": "marketplace.json.template"
+  },
+  "notes": ["codex plugin marketplace add <package>; codex plugin add h3c-helper@h3c-helper-local. The codex CLI is absent on the build Mac; installation is unverified there."]
+}

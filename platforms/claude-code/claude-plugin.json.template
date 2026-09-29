@@ -1,0 +1,14 @@
+{
+  "name": "h3c-helper",
+  "version": "{{VERSION}}",
+  "description": "H3C configuration, troubleshooting, network design, product selection and service-support workflows.",
+  "author": {
+    "name": "Terren"
+  },
+  "keywords": [
+    "h3c",
+    "networking",
+    "comware",
+    "support"
+  ]
+}

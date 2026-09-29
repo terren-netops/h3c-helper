@@ -1,0 +1,6 @@
+{
+  "layout": "plugin",
+  "archive": {"prefix": "h3c-helper/", "extension": ".zip"},
+  "platform_files": {".claude-plugin/plugin.json": "claude-plugin.json.template"},
+  "notes": ["claude plugin validate <package> --strict; claude --plugin-dir <package> for session loading."]
+}

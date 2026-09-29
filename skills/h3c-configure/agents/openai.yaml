@@ -1,0 +1,3 @@
+interface:
+  display_name: "H3C Configuration Review"
+  short_description: "Draft and review H3C configurations with verification steps"
