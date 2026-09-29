@@ -77,6 +77,8 @@ For a new machine, use the [local installation guide](docs/install.md). It inclu
 
 The maintainer-specific local installation uses `h3c-helper@personal`; this is not a public marketplace identifier. Do not use it on another machine unless you have configured that marketplace. Where that marketplace already points to the source, reinstall with `codex plugin add h3c-helper@personal` and inspect `codex plugin list --marketplace personal --json`. Start a new task to load updated skills.
 
+To publish a release, update `VERSION`, commit, then push a tag `v<VERSION>`; the Release workflow checks that the tag matches `VERSION`, runs the tests, builds and verifies every package and publishes them (pre-release when the version has a suffix such as `-rc.14`). It never overwrites an existing release. Run the workflow manually for a dry run that only uploads the packages as an artifact.
+
 Maintain the shared source directly and never edit generated packages. Record user-visible changes under a distinct `VERSION` and update this README with scope, validation and limitations. Plugin manifests are generated from `platforms/codex` and `platforms/claude-code` templates. The `+codex.<timestamp>` suffix refreshes the local installation cache; it does not replace the source version. Use the official plugin-creator cachebuster/reinstall flow. Do not create a separate enhancement ZIP for routine updates.
 
 ## Claude Code (local loading)

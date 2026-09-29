@@ -1,0 +1,65 @@
+name: Release
+
+# Push a tag v<VERSION> to build, verify and publish every platform package.
+# Run manually (workflow_dispatch) for a dry run that builds and uploads an artifact without publishing.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Check tag matches VERSION
+        if: github.event_name == 'push'
+        run: |
+          version="$(tr -d '[:space:]' < VERSION)"
+          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match VERSION $version"
+            exit 1
+          fi
+      - name: Install optional checker dependency
+        run: python -m pip install "jsonschema>=4,<5"
+      - name: Unit tests
+        run: python -m unittest discover -s tests
+      - name: Build and verify every platform package
+        run: |
+          python tools/build.py --all --dist "$RUNNER_TEMP/dist"
+          cd "$RUNNER_TEMP/dist" && sha256sum *.zip *.skill > SHA256SUMS.txt
+      - name: Upload dry-run packages
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: |
+            ${{ runner.temp }}/dist/*.zip
+            ${{ runner.temp }}/dist/*.skill
+            ${{ runner.temp }}/dist/SHA256SUMS.txt
+            ${{ runner.temp }}/dist/ALLOWED-DIFFERENCES.md
+      - name: Publish release
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="$(tr -d '[:space:]' < VERSION)"
+          # Never overwrite a published release; bump VERSION and tag again instead.
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::Release $GITHUB_REF_NAME already exists"
+            exit 1
+          fi
+          prerelease=""
+          case "$version" in *-*) prerelease="--prerelease" ;; esac
+          cd "$RUNNER_TEMP/dist"
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --verify-tag $prerelease \
+            --title "H3c Helper $version" --notes-file "$GITHUB_WORKSPACE/.github/release-notes.md" --generate-notes \
+            *.zip *.skill SHA256SUMS.txt ALLOWED-DIFFERENCES.md
