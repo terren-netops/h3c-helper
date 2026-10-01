@@ -1,6 +1,6 @@
 # Portable local skill distribution
 
-Source version: 0.9.1-rc.14. This is an evaluation candidate, not a public release. Design reasoning (TF-17), evidence wording (TF-21), WorkBuddy batch-script safety (TF-24) and concept accuracy (TF-25) issues remain open. The host results below are for rc.12; rc.13 adds production collection instructions and rc.14 adds batch-script and optics guards; neither has undergone WorkBuddy behavior acceptance.
+Source version: 0.9.1-rc.15. This is an evaluation candidate published as a GitHub pre-release, not a stable release. Design reasoning (TF-17), evidence wording (TF-21), WorkBuddy batch-script safety (TF-24) and concept accuracy (TF-25) issues remain open. The host results below are for rc.12; rc.13 adds production collection instructions and rc.14 adds batch-script and optics guards; neither has undergone WorkBuddy behavior acceptance.
 
 `tools/build.py` combines five canonical workflows into one `h3c-helper` entry point and relocates their references. All resources travel together; copying a single original SKILL.md is insufficient. Core instructions remain English-first; an explicit language request takes precedence. No MCP server or SSH executor is added.
 

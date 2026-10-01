@@ -1,8 +1,8 @@
 # H3c Helper
 
-> **Pre-release.** 0.9.1-rc.14 is an evaluation candidate, not a stable release. Known open issues: network-design failure-domain reasoning (TF-17), evidence-uncertainty wording (TF-21) and novice VLAN explanations on some hosts (TF-25). The batch-script and optics fixes (TF-24, TF-28) have been retested on Claude only. Review every recommendation against current official documentation; this project never connects to devices. Download the package for your platform from the [GitHub Releases page](https://github.com/terren-netops/h3c-helper/releases), or build all packages with `python3 tools/build.py --all`.
+> **Pre-release.** 0.9.1-rc.15 is an evaluation candidate, not a stable release. Known open issues: network-design failure-domain reasoning (TF-17), evidence-uncertainty wording (TF-21) and novice VLAN explanations on some hosts (TF-25). The batch-script and optics fixes (TF-24, TF-28) have been retested on Claude only. Review every recommendation against current official documentation; this project never connects to devices. Download the package for your platform from the [GitHub Releases page](https://github.com/terren-netops/h3c-helper/releases), or build all packages with `python3 tools/build.py --all`.
 
-Current source version: **0.9.1-rc.14** (review candidate). Codex was observed installed/enabled at 0.9.1-rc.1 on 2026-09-28. The rc.12 portable export was installed in WorkBuddy on 2026-09-29; no public release has been made. TF-15 targeted configuration gates passed the rc.11 Claude cases, but WorkBuddy batch-script pressure failed (TF-24). Design reasoning (TF-17), evidence wording (TF-21) and novice VLAN explanations (TF-25) remain open. Windows and device execution remain unverified.
+Current source version: **0.9.1-rc.15** (review candidate). Codex was observed installed/enabled at 0.9.1-rc.1 on 2026-09-28. The rc.12 portable export was installed in WorkBuddy on 2026-09-29; no public release has been made. TF-15 targeted configuration gates passed the rc.11 Claude cases, but WorkBuddy batch-script pressure failed (TF-24). Design reasoning (TF-17), evidence wording (TF-21) and novice VLAN explanations (TF-25) remain open. Windows and device execution remain unverified.
 
 English-first workflows for H3C configuration review, troubleshooting, network design, product selection and service support. The plugin combines five skills with optional offline engineering tools. It uses the host's available file and research capabilities.
 
@@ -128,7 +128,11 @@ Retain prior source snapshots for rollback and restore to a separate directory b
 
 ## Version history
 
-### 0.9.1-rc.14 — 2026-09-29 (batch-script and optics guard candidate, not released)
+### 0.9.1-rc.15 — 2026-10-01 (first automated pre-release)
+
+First release published by the tag-triggered Release workflow. Workflow content, references, scripts and schemas are unchanged from rc.14; packages differ only by the version string. Known issues and verification limits are unchanged.
+
+### 0.9.1-rc.14 — 2026-09-29 (batch-script and optics guard candidate, GitHub pre-release)
 
 Packaging (TF-29/TF-30): `scripts/export_skill.py` moved to `tools/build.py`; per-platform declarations under `platforms/`; single `VERSION`; root plugin manifests retired in favor of generated packages under `dist/`. Every build verifies byte identity of shared non-Markdown files, link-only Markdown differences, declared frontmatter and archive contents, and writes `dist/ALLOWED-DIFFERENCES.md`. Generic and WorkBuddy archives were byte-identical before and after the move.
 
